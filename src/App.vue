@@ -1,5 +1,6 @@
 <template>
   <div id="app">
+    <projects></projects>
     <img class="logo" src="./assets/logo.png">
     <hello></hello>
     <p>
@@ -24,10 +25,11 @@
 
 <script>
 import Hello from './components/Hello';
+import Projects from './components/Projects';
 
 export default {
   components: {
-    Hello,
+    Hello, Projects,
   },
 };
 </script>
