@@ -6,27 +6,29 @@
         {{ project.name }}
       </li>
     </ul>
-    <input v-model="newProjectName" v-on:keyup.enter="addNewProject" placeholder="New project" />
+    <input v-model="newProjectName" v-on:keyup.enter="addProject" placeholder="New project" />
   </div>
 </template>
 
 <script>
-const uuid = require('node-uuid');
+import { getProjects } from '../vuex/getters';
+import { addNewProject } from '../vuex/actions';
 
 export default {
   data() {
     return {
-      projects: [
-        { id: uuid.v4(), name: 'Write a TODO app' },
-        { id: uuid.v4(), name: 'Record a Snapchat on Vue.js' },
-      ],
       newProjectName: '',
     };
   },
+  vuex: {
+    getters: {
+      projects: getProjects,
+    },
+  },
   methods: {
-    addNewProject() {
+    addProject() {
       if (this.newProjectName.length === 0) { return; }
-      this.projects.push({ id: uuid.v4(), name: this.newProjectName });
+      addNewProject(this.$store, this.newProjectName);
       this.newProjectName = '';
     },
   },
