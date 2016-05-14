@@ -10,7 +10,10 @@ const currentState = {
     { id: uuid.v4(), name: 'Write a TODO app' },
     { id: uuid.v4(), name: 'Cook burrito' },
   ],
+  chosenProject: null,
 };
+
+currentState.chosenProject = currentState.projects[0];
 
 const mutations = {
   INCREMENT(state, amount) {
@@ -18,6 +21,9 @@ const mutations = {
   },
   ADD_PROJECT(state, newProject) {
     currentState.projects.push(newProject);
+  },
+  CHOOSE_PROJECT(state, projectId) {
+    console.log(projectId);
   },
 };
 

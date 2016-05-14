@@ -10,3 +10,7 @@ export const addNewProject = function ({ dispatch }, newProjectName) {
     name: newProjectName,
   });
 };
+
+export const chooseProject = function ({ dispatch }, project) {
+  dispatch('CHOOSE_PROJECT', project);
+};

@@ -1,9 +1,9 @@
 <template>
   <div class="projects">
     <h1>Projects</h1>
-    <ul>
+    <ul v-on:click.prevent>
       <li v-for="project in projects">
-        {{ project.name }}
+        <a href="#" v-on:click="chooseProject(project)">{{ project.name }}</a>
       </li>
     </ul>
     <input v-model="newProjectName" v-on:keyup.enter="addProject" placeholder="New project" />
@@ -12,7 +12,7 @@
 
 <script>
 import { getProjects } from '../vuex/getters';
-import { addNewProject } from '../vuex/actions';
+import { addNewProject, chooseProject } from '../vuex/actions';
 
 export default {
   data() {
@@ -23,6 +23,9 @@ export default {
   vuex: {
     getters: {
       projects: getProjects,
+    },
+    actions: {
+      chooseProject,
     },
   },
   methods: {
