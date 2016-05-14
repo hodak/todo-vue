@@ -1,14 +1,19 @@
-import uuid from 'node-uuid';
+import config from '../config';
+import request from 'superagent';
 
 export const incrementCounter = function ({ dispatch }) {
   dispatch('INCREMENT', 1);
 };
 
 export const addNewProject = function ({ dispatch }, newProjectName) {
-  dispatch('ADD_PROJECT', {
-    id: uuid.v4(),
-    name: newProjectName,
-  });
+  request
+    .post(`${config.API_URL}/projects`)
+    .send({ project: { name: newProjectName } })
+    .end((err, res) => {
+      if (!err) {
+        dispatch('ADD_PROJECT', res.body.project);
+      }
+    });
 };
 
 export const chooseProject = function ({ dispatch }, project) {
