@@ -27,3 +27,13 @@ export function addNewProject({ dispatch }, newProjectName) {
 export function chooseProject({ dispatch }, project) {
   dispatch('CHOOSE_PROJECT', project);
 }
+
+export function deleteProject({ dispatch }, project) {
+  request
+    .delete(`${config.API_URL}/projects/${project.id}`)
+    .end((err) => {
+      if (!err) {
+        dispatch('DELETE_PROJECT', project.id);
+      }
+    });
+}

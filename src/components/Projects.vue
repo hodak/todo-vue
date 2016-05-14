@@ -4,6 +4,7 @@
     <ul v-on:click.prevent>
       <li v-for="project in projects">
         <a href="#" v-on:click="chooseProject(project)">{{ project.name }}</a>
+        <a href="#" v-on:click="deleteProject(project)">&times;</a>
       </li>
     </ul>
     <input v-model="newProjectName" v-on:keyup.enter="addProject" placeholder="New project" />
@@ -12,7 +13,7 @@
 
 <script>
 import { getProjects } from '../vuex/getters';
-import { initProjects, addNewProject, chooseProject } from '../vuex/actions';
+import { initProjects, addNewProject, chooseProject, deleteProject } from '../vuex/actions';
 
 export default {
   created() {
@@ -29,6 +30,7 @@ export default {
     },
     actions: {
       chooseProject,
+      deleteProject,
     },
   },
   methods: {

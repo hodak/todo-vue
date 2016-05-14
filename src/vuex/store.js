@@ -24,6 +24,11 @@ const mutations = {
   CHOOSE_PROJECT(state, projectId) {
     console.log(projectId);
   },
+  DELETE_PROJECT(state, projectId) {
+    currentState.projects = state.projects.filter((project) =>
+                                                  project.id !== projectId
+                                                 );
+  },
 };
 
 export default new Vuex.Store({
