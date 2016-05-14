@@ -15,6 +15,9 @@ const mutations = {
   INCREMENT(state, amount) {
     currentState.count = state.count + amount;
   },
+  RECEIVE_PROJECTS(state, projects) {
+    currentState.projects = projects;
+  },
   ADD_PROJECT(state, newProject) {
     currentState.projects.push(newProject);
   },

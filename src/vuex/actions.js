@@ -10,9 +10,7 @@ export function initProjects({ dispatch }) {
     .get(`${config.API_URL}/projects`)
     .end((err, res) => {
       if (!err) {
-        res.body.projects.forEach((project) => {
-          dispatch('ADD_PROJECT', project);
-        });
+        dispatch('RECEIVE_PROJECTS', res.body.projects);
       }
     });
 }
