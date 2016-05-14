@@ -1,11 +1,11 @@
 import config from '../config';
 import request from 'superagent';
 
-export const incrementCounter = function ({ dispatch }) {
+export function incrementCounter({ dispatch }) {
   dispatch('INCREMENT', 1);
-};
+}
 
-export const addNewProject = function ({ dispatch }, newProjectName) {
+export function addNewProject({ dispatch }, newProjectName) {
   request
     .post(`${config.API_URL}/projects`)
     .send({ project: { name: newProjectName } })
@@ -14,8 +14,8 @@ export const addNewProject = function ({ dispatch }, newProjectName) {
         dispatch('ADD_PROJECT', res.body.project);
       }
     });
-};
+}
 
-export const chooseProject = function ({ dispatch }, project) {
+export function chooseProject({ dispatch }, project) {
   dispatch('CHOOSE_PROJECT', project);
-};
+}
