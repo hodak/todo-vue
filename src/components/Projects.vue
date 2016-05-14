@@ -12,9 +12,12 @@
 
 <script>
 import { getProjects } from '../vuex/getters';
-import { addNewProject, chooseProject } from '../vuex/actions';
+import { initProjects, addNewProject, chooseProject } from '../vuex/actions';
 
 export default {
+  created() {
+    initProjects(this.$store);
+  },
   data() {
     return {
       newProjectName: '',

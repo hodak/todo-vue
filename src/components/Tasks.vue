@@ -1,5 +1,5 @@
 <template>
-  <div class="tasks">
+  <div class="tasks" v-if="chosenProject">
     <h1>Tasks</h1>
     {{ chosenProject.id }}
     <ul>
