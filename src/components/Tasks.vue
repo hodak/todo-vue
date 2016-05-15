@@ -1,23 +1,23 @@
 <template>
   <div class="tasks" v-if="chosenProject">
     <h1>Tasks</h1>
-    {{ chosenProject.id }}
     <ul>
       <li v-for="task in tasks">
-        {{ task.name }}
+        {{ task.text }}
       </li>
     </ul>
-    <input v-model="newTaskName" v-on:keyup.enter="addTask" placeholder="New task" />
+    <input v-model="newTaskText" v-on:keyup.enter="addTask" placeholder="New task" />
   </div>
 </template>
 
 <script>
 import { getTasks, getChosenProject } from '../vuex/getters';
+import { addNewTask } from '../vuex/actions';
 
 export default {
   data() {
     return {
-      newTaskName: '',
+      newTaskText: '',
     };
   },
   vuex: {
@@ -28,7 +28,8 @@ export default {
   },
   methods: {
     addTask() {
-      console.log('addTasks');
+      addNewTask(this.$store, this.chosenProject, { text: this.newTaskText });
+      this.newTaskText = '';
     },
   },
 };
