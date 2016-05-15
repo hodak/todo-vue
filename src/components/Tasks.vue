@@ -3,7 +3,8 @@
     <h1>Tasks</h1>
     <ul>
       <li v-for="task in tasks">
-        {{ task.text }}
+        <span>{{ task.text }}</span>
+        <a href="#" v-on:click.prevent v-on:click="deleteTask(task)">&times;</a>
       </li>
     </ul>
     <input v-model="newTaskText" v-on:keyup.enter="addTask" placeholder="New task" />
@@ -12,7 +13,7 @@
 
 <script>
 import { getTasks, getChosenProject } from '../vuex/getters';
-import { addNewTask } from '../vuex/actions';
+import { addNewTask, deleteTask } from '../vuex/actions';
 
 export default {
   data() {
@@ -24,6 +25,9 @@ export default {
     getters: {
       tasks: getTasks,
       chosenProject: getChosenProject,
+    },
+    actions: {
+      deleteTask,
     },
   },
   methods: {

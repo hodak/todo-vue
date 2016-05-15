@@ -58,3 +58,13 @@ export function addNewTask({ dispatch }, project, newTask) {
       }
     });
 }
+
+export function deleteTask({ dispatch }, task) {
+  request
+    .delete(`${config.API_URL}/tasks/${task.id}`)
+    .end((err) => {
+      if (!err) {
+        dispatch('DELETE_TASK', task.id);
+      }
+    });
+}

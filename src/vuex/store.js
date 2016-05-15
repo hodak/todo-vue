@@ -42,6 +42,10 @@ const mutations = {
       currentState.tasks.push(task);
     }
   },
+  DELETE_TASK(state, taskId) {
+    currentState.tasks =
+      state.tasks.filter((task) => task.id !== taskId);
+  },
 };
 
 export default new Vuex.Store({
