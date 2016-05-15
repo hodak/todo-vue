@@ -1,6 +1,6 @@
 <template>
   <div class="tasks" v-if="chosenProject">
-    <h1>Tasks</h1>
+    <h2>{{ chosenProject.name }} tasks</h2>
     <ul>
       <li v-for="task in tasks">
         <span>{{ task.text }}</span>

@@ -12,34 +12,40 @@ export function chooseProject({ dispatch }, project) {
     });
 }
 
+function ensureAnyProjectChosen(store) {
+  if (!store.state.chosenProject && store.state.projects.length > 0) {
+    chooseProject(store, store.state.projects[0]);
+  }
+}
+
 export function initProjects(store) {
   request
     .get(`${config.API_URL}/projects`)
     .end((err, res) => {
       if (!err) {
         store.dispatch('RECEIVE_PROJECTS', res.body.projects);
-        if (res.body.projects.length > 0) {
-          chooseProject(store, res.body.projects[0]);
-        }
+        ensureAnyProjectChosen(store);
       }
     });
 }
 
-export function addNewProject({ dispatch }, newProjectName) {
+export function addNewProject(store, newProjectName) {
   request
     .post(`${config.API_URL}/projects`)
     .send({ project: { name: newProjectName } })
     .end((err, res) => {
-      dispatch('ADD_PROJECT', res.body.project);
+      store.dispatch('ADD_PROJECT', res.body.project);
+      chooseProject(store, res.body.project);
     });
 }
 
-export function deleteProject({ dispatch }, project) {
+export function deleteProject(store, project) {
   request
     .delete(`${config.API_URL}/projects/${project.id}`)
     .end((err) => {
       if (!err) {
-        dispatch('DELETE_PROJECT', project.id);
+        store.dispatch('DELETE_PROJECT', project.id);
+        ensureAnyProjectChosen(store);
       }
     });
 }
