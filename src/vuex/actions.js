@@ -1,10 +1,6 @@
 import config from '../config';
 import request from 'superagent';
 
-export function incrementCounter({ dispatch }) {
-  dispatch('INCREMENT', 1);
-}
-
 export function chooseProject({ dispatch }, project) {
   dispatch('CHOOSE_PROJECT', project);
   request

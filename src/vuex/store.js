@@ -13,9 +13,6 @@ const currentState = {
 currentState.chosenProject = currentState.projects[0];
 
 const mutations = {
-  INCREMENT(state, amount) {
-    currentState.count = state.count + amount;
-  },
   RECEIVE_PROJECTS(state, projects) {
     currentState.projects = projects;
   },
