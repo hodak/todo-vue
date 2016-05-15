@@ -1,0 +1,7 @@
+# Things to do in the app
+
+- Routing
+- Error handling
+  - what if request fails - it shouldn't remove project from the list or clear new task's name
+- Styling
+  - Animations?
